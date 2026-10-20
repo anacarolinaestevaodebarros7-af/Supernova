@@ -35,7 +35,9 @@ public class SecurityConfig {
                 // Os controllers decidem o Cache-Control (RN13); o padrão do Spring Security é no-store.
                 .headers(h -> h.cacheControl(HeadersConfigurer.CacheControlConfig::disable))
                 .authorizeHttpRequests(a -> a
+                        .requestMatchers("/", "/index.html", "/styles.css", "/app.js", "/logo.svg", "/logo-mark.svg", "/favicon.ico").permitAll()
                         .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/localidades").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/v1/usuarios").permitAll()
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .requestMatchers("/api/v1/admin/**").hasRole("GESTOR_PUBLICO")

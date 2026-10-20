@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 760" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Manejo Caatingueiro</title>
+  <desc id="desc">Lagartixa, mandacaru e sol dentro de um círculo, sobre o nome Manejo Caatingueiro.</desc>
+  <image href="logo-mark.svg" x="170" y="5" width="380" height="380"/>
+  <text x="360" y="500" text-anchor="middle" fill="#572715" font-family="Georgia, serif" font-size="104" letter-spacing="8">MANEJO</text>
+  <path d="M116 553h192m104 0h192" stroke="#572715" stroke-width="2"/>
+  <path d="M360 540c-10 10-12 20 0 31 12-11 10-21 0-31Zm-4 31-15-10m19 10 15-10" stroke="#5d603d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="360" y="628" text-anchor="middle" fill="#572715" font-family="Georgia, serif" font-size="46" letter-spacing="14">CAATINGUEIRO</text>
+</svg>
