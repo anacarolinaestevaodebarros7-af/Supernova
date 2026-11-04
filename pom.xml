@@ -51,6 +51,11 @@
       <artifactId>mysql-connector-j</artifactId>
       <scope>runtime</scope>
     </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>runtime</scope>
+    </dependency>
 
     <!-- Justificativa: o prompt exige JWT e o Spring Security não traz biblioteca de geração/validação de JWT. -->
     <dependency>

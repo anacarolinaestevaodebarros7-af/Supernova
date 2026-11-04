@@ -21,20 +21,40 @@ Dependências além das listadas no prompt (justificadas):
 
 ```bash
 mvn clean verify                 # 1) compila e roda os testes
-export DB_URL="jdbc:mysql://localhost:3306/manejo_caatingueiro?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true"
-export DB_USER=...               # nunca fixar no código
-export DB_PASSWORD=...
+export SUPABASE_DB_PASSWORD=...  # senha do banco Supabase; nunca fixar no código
+# O projeto Supabase kuxhyagmmshkjjscqwca é o padrão. Opcionalmente:
+# export SUPABASE_DB_URL="jdbc:postgresql://db.kuxhyagmmshkjjscqwca.supabase.co:5432/postgres?sslmode=require"
+# export SUPABASE_DB_USER=postgres
 export JWT_SECRET="...pelo menos 32 caracteres..."
 export BOOTSTRAP_GESTOR_TELEFONE=74999990000   # opcional: cria o 1º gestor se não houver nenhum
 export BOOTSTRAP_GESTOR_SENHA=...
 mvn spring-boot:run -Dspring-boot.run.profiles=dev   # perfil dev carrega dados FICTÍCIOS (veja abaixo)
 ```
 
+## Cliente desktop
+
+O cliente Swing fica isolado em `desktop-app/` e consome esta API. Inicie o backend e configure o banco e o JWT
+conforme as instruções acima; depois, em outro terminal:
+
+```bash
+mvn -f desktop-app/pom.xml package
+java -jar desktop-app/target/manejo-caatingueiro-desktop-0.1.0.jar
+```
+
+Por padrão, o cliente usa `http://localhost:8080`. Para outra instância, defina `MANEJO_API_URL` antes de iniciá-lo.
+O fluxo desktop usa diálogos Swing (`JOptionPane`) para login, seleção de localidade/cultura, consulta do painel de
+chuva e visualização da sugestão de plantio. A separação é `view → controller → service → API`; regras de negócio e
+persistência continuam no backend.
+
+Para continuar usando MySQL em vez do Supabase, defina `DB_URL`, `DB_USER` e `DB_PASSWORD`; essas variáveis têm
+precedência apenas quando as variáveis `SUPABASE_DB_*` correspondentes não estiverem definidas.
+
 Swagger: `http://localhost:8080/swagger-ui.html`
 
 | Variável | Obrigatória | Padrão | Uso |
 |---|---|---|---|
-| `DB_URL`, `DB_USER`, `DB_PASSWORD` | sim | — | MySQL |
+| `SUPABASE_DB_URL`, `SUPABASE_DB_USER`, `SUPABASE_DB_PASSWORD` | senha necessária | URL e usuário padrão | PostgreSQL Supabase |
+| `DB_URL`, `DB_USER`, `DB_PASSWORD` | não | — | compatibilidade com MySQL |
 | `JWT_SECRET` | sim | — | assinatura do JWT (mín. 32 caracteres) |
 | `JWT_EXPIRACAO_MIN` | não | 480 | validade do token |
 | `JPA_DDL_AUTO` | não | `update` | em produção, prefira `validate` + migração |

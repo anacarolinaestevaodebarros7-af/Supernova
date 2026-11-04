@@ -1,5 +1,7 @@
 *.xlsx
 /target/
+desktop-app/target/
+/desktop-app/dependency-reduced-pom.xml
 /dados-pesquisa/
 /dados_pesquisa/
 /pesquisa/dados/
